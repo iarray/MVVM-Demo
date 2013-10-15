@@ -35,15 +35,32 @@ namespace 订餐管理系统.Model
         public OrderForm()
         {
             Orders = new ObservableCollection<T>();
-            SelectMenuCommand = new DelegateCommand();
-            SelectMenuCommand.ExcuteAction = new Action<object>(SelectMenuProc);
         }
 
-        public DelegateCommand SelectMenuCommand { get; set; }
-
-        public void SelectMenuProc(object obj)
+        public string GetOrderInfoString()
         {
-            this.TotalMoney = this.GetTotalMoney();
+            List<Order> ods = this.GetIsSelectedOrder();
+            StringBuilder strOrder = new StringBuilder(50);
+            strOrder.Append("订单信息:\n");
+            foreach (Order od in ods)
+            {
+                strOrder.Append(od.Name);
+                strOrder.Append("\t数量:");
+                strOrder.Append(od.Count);
+                strOrder.Append("\n");
+            }
+            this.TotalMoney=this.GetTotalMoney();
+            strOrder.Append("总金额:" + TotalMoney.ToString() + " 元");
+            return strOrder.ToString();
+        }
+
+        public List<Order> GetIsSelectedOrder()
+        {
+            List<Order> ods =
+                   (from od in this.Orders
+                    where od.IsSelected == true
+                    select od).ToList<Order>();
+            return ods;
         }
     }
 }

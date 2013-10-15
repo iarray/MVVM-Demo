@@ -9,6 +9,8 @@ namespace 订餐管理系统.Model
 {
     class SqlHelper:IDisposable
     {
+        public const string MyConnectionString = "server=localhost;uid=root;pwd=123456;database=AppDataBase;";
+
         private SqlConnection sqlconc;
 
         private string _strConnec;

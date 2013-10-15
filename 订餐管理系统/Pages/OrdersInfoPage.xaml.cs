@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,21 +12,19 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using FirstFloor.ModernUI.Windows.Controls;
-using 订餐管理系统.Model;
-using 订餐管理系统.ViewModules;
+using 订餐管理系统.ViewModels;
 
 namespace 订餐管理系统.Pages
 {
     /// <summary>
-    /// Interaction logic for OrderPage.xaml
+    /// Interaction logic for OrdersInfoPage.xaml
     /// </summary>
-    public partial class OrderPage : UserControl
+    public partial class OrdersInfoPage : UserControl
     {
-        public OrderPage()
+        public OrdersInfoPage()
         {
             InitializeComponent();
-            this.DataContext = new OrderPageViewModel();
+            this.DataContext = new OrdersInfoPageViewModel();
         }
     }
 }

@@ -3,3 +3,7 @@ D:\我的文档\2013VS项目\10月\订餐管理系统\MVVM\bin\Debug\MVVM.pdb
 D:\我的文档\2013VS项目\10月\订餐管理系统\MVVM\obj\Debug\MVVM.dll
 D:\我的文档\2013VS项目\10月\订餐管理系统\MVVM\obj\Debug\MVVM.pdb
 D:\我的文档\2013VS项目\10月\订餐管理系统\MVVM\obj\Debug\MVVM.csprojResolveAssemblyReference.cache
+D:\我的文档\2013VS项目\10月\MVVM-OrderManagementSystem\MVVM\bin\Debug\MVVM.dll
+D:\我的文档\2013VS项目\10月\MVVM-OrderManagementSystem\MVVM\bin\Debug\MVVM.pdb
+D:\我的文档\2013VS项目\10月\MVVM-OrderManagementSystem\MVVM\obj\Debug\MVVM.dll
+D:\我的文档\2013VS项目\10月\MVVM-OrderManagementSystem\MVVM\obj\Debug\MVVM.pdb

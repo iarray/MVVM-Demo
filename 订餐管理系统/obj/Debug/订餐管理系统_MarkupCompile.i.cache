@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\我的文档\2013VS项目\10月\订餐管理系统\订餐管理系统\obj\Debug\
+D:\我的文档\2013VS项目\10月\MVVM-OrderManagementSystem\订餐管理系统\obj\Debug\
 订餐管理系统
 none
 false
 DEBUG;TRACE
-D:\我的文档\2013VS项目\10月\订餐管理系统\订餐管理系统\App.xaml
-7-1182718017
+D:\我的文档\2013VS项目\10月\MVVM-OrderManagementSystem\订餐管理系统\App.xaml
+8-2100460605
 
-18-1087287844
-15448723877
-MainWindow.xaml;Content\About.xaml;Content\SettingsAppearance.xaml;Pages\Home.xaml;Pages\MenuPage.xaml;Pages\OrderPage.xaml;Pages\Settings.xaml;
+19573654453
+162114345073
+MainWindow.xaml;Content\About.xaml;Content\SettingsAppearance.xaml;Pages\Home.xaml;Pages\MenuPage.xaml;Pages\OrderPage.xaml;Pages\OrdersInfoPage.xaml;Pages\Settings.xaml;
 
 False
 

@@ -47,6 +47,7 @@ namespace 订餐管理系统.Model
             {
                 this._count = value;
                 this.OnPropertyChanged("Count");
+                this.IsSelected = false;
             }
         }
 

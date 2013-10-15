@@ -8,7 +8,7 @@ using 订餐管理系统.Model;
 
 namespace 订餐管理系统.ViewModules
 {
-    class MenuPageViewModule:NotificationObject
+    class MenuPageViewModel:NotificationObject
     {
         private DataTable _menuData;
 
@@ -20,10 +20,12 @@ namespace 订餐管理系统.ViewModules
             }
         }
 
-        public MenuPageViewModule()
+        public MenuPageViewModel()
         {
-            SqlHelper sqlH = new SqlHelper("server=localhost;uid=root;pwd=123456;database=AppDataBase;");
-            sqlH.ExcuteSql("Select * from dbo.Menu", out _menuData);
+            using (SqlHelper sqlH = new SqlHelper(SqlHelper.MyConnectionString))
+            {
+                sqlH.ExcuteSql("Select * from dbo.Menu", out _menuData);
+            }
         }
     }
 }

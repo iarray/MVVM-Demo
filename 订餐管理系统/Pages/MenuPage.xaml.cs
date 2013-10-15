@@ -24,7 +24,7 @@ namespace 订餐管理系统.Pages
         public MenuPage()
         {
             InitializeComponent();
-            this.DataContext = new MenuPageViewModule();
+            this.DataContext = new MenuPageViewModel();
         }
     }
 }

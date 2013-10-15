@@ -46,5 +46,14 @@ namespace 订餐管理系统.Commands
 
         public Action<object> ExcuteAction { get; set; }
         public Func<object,bool> CanExcuteFunc { get; set; }
+
+        public DelegateCommand()
+        {
+        }
+
+        public DelegateCommand(Action<object> action)
+        {
+            this.ExcuteAction = action;
+        }
     }
 }
