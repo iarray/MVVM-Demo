@@ -22,9 +22,9 @@ namespace 订餐管理系统.ViewModules
 
         public MenuPageViewModel()
         {
-            using (SqlHelper sqlH = new SqlHelper(SqlHelper.MyConnectionString))
+            using (SqlCRUD sqlCRUD = new SqlCRUD(SqlHelper.MyConnectionString))
             {
-                sqlH.ExcuteSql("Select * from dbo.Menu", out _menuData);
+                _menuData = sqlCRUD.SelectData("Menu", new string[] { "*" });
             }
         }
     }

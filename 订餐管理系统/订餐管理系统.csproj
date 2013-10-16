@@ -64,8 +64,11 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Commands\DelegateCommand.cs" />
+    <Compile Include="Exception\NotEqualException.cs" />
+    <Compile Include="Model\ExtensionMethods.cs" />
     <Compile Include="Model\Order.cs" />
     <Compile Include="Model\OrderForm.cs" />
+    <Compile Include="Model\SqlCRUD.cs" />
     <Compile Include="Pages\MenuPage.xaml.cs">
       <DependentUpon>MenuPage.xaml</DependentUpon>
     </Compile>

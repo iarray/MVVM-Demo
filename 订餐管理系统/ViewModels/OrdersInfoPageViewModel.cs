@@ -61,32 +61,39 @@ namespace 订餐管理系统.ViewModels
 
         public OrdersInfoPageViewModel()
         {
-            using (SqlHelper sqlH = new SqlHelper(SqlHelper.MyConnectionString))
+            using (SqlCRUD sqlCRUD = new SqlCRUD(SqlHelper.MyConnectionString))
             {
-                sqlH.ExcuteSql("Select ID,Money,Time,Remark from Orders", out _ordersData);
+                _ordersData = sqlCRUD.SelectData("Orders", new string[] { "ID", "Money", "Time" });
             }
             OrderSelectIndex = 0;
         }
 
         public string GetSelectOrderInfo(int index)
         {
-            using (SqlHelper sqlH = new SqlHelper(SqlHelper.MyConnectionString))
+            if (index >= _ordersData.Rows.Count)
             {
-                SqlDataReader sdr=null;
-                string id = _ordersData.Rows[index]["ID"].ToString();
-                sqlH.ExcuteSql("Select Info from Orders where ID="+id,out sdr);
-                if (sdr != null)
+                return string.Empty;
+            }
+            else
+            {
+                using (SqlHelper sqlH = new SqlHelper(SqlHelper.MyConnectionString))
                 {
-                    StringBuilder strbInfo = new StringBuilder();
-                    while (sdr.Read())
+                    SqlDataReader sdr = null;
+                    string id = _ordersData.Rows[index]["ID"].ToString();
+                    sqlH.ExcuteSql("Select Info from Orders where ID=" + id, out sdr);
+                    if (sdr != null)
                     {
-                        strbInfo.Append(sdr.GetValue(0).ToString());
+                        StringBuilder strbInfo = new StringBuilder();
+                        while (sdr.Read())
+                        {
+                            strbInfo.Append(sdr.GetValue(0).ToString());
+                        }
+                        return strbInfo.ToString();
                     }
-                    return strbInfo.ToString();
-                }
-                else
-                {
-                    return "没有找到相关订单的信息。";
+                    else
+                    {
+                        return "没有找到相关订单的信息。";
+                    }
                 }
             }
         }
