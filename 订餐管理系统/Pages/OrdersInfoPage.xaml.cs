@@ -24,7 +24,6 @@ namespace 订餐管理系统.Pages
         public OrdersInfoPage()
         {
             InitializeComponent();
-            this.DataContext = new OrdersInfoPageViewModel();
         }
     }
 }

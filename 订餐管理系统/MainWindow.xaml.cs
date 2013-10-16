@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using 订餐管理系统.Manager;
 
 namespace 订餐管理系统
 {
@@ -24,6 +25,7 @@ namespace 订餐管理系统
         public MainWindow()
         {
             InitializeComponent();
+            ViewModelsManager.InitializeViewModelsToStaticResouce();
         }
     }
 }

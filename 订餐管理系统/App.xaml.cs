@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using 订餐管理系统.Manager;
 
 namespace 订餐管理系统
 {

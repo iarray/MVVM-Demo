@@ -12,8 +12,11 @@
                 <mui:Link DisplayName="home" Source="/Pages/Home.xaml" />
                 <mui:Link DisplayName="菜单" Source="/Pages/MenuPage.xaml"/>
                 <mui:Link DisplayName="下订" Source="/Pages/OrderPage.xaml" />
-                <mui:Link DisplayName="订单管理" Source="/Pages/OrdersInfoPage.xaml" />
+                <mui:Link DisplayName="订单查询" Source="/Pages/OrdersInfoPage.xaml" />
             </mui:LinkGroup.Links>
+        </mui:LinkGroup>
+        <mui:LinkGroup DisplayName="管理">
+            
         </mui:LinkGroup>
         <mui:LinkGroup DisplayName="设置" GroupName="设置">
             <mui:LinkGroup.Links>

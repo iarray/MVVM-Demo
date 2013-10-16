@@ -7,11 +7,15 @@ using System.Windows;
 using FirstFloor.ModernUI.Presentation;
 using FirstFloor.ModernUI.Windows.Controls;
 using MVVM;
+using 订餐管理系统.Attributes;
 using 订餐管理系统.Commands;
+using 订餐管理系统.Manager;
 using 订餐管理系统.Model;
+using 订餐管理系统.ViewModels;
 
 namespace 订餐管理系统.ViewModules
 {
+    [StaticResource("OrderPageViewModel")]
     class OrderPageViewModel:NotificationObject
     {
         /// <summary>
@@ -79,11 +83,19 @@ namespace 订餐管理系统.ViewModules
         public DelegateCommand SelectMenuCommand { get; set; }
         public DelegateCommand SumbitCommand { get; set; }
 
+        /// <summary>
+        /// CheckBox相关Command
+        /// </summary>
+        /// <param name="obj"></param>
         public void SelectMenuProc(object obj)
         {
             this.ToTalMoney = this.OrderList.GetTotalMoney();
         }
 
+        /// <summary>
+        /// Button(提交按钮)相关Command
+        /// </summary>
+        /// <param name="obj"></param>
         public void PostOrdersProc(object obj)
         {
             string info = string.Empty;
@@ -98,13 +110,26 @@ namespace 订餐管理系统.ViewModules
             if (ModernDialog.ShowMessage(info, "订单信息", MessageBoxButton.OKCancel) ==
                 MessageBoxResult.OK)
             {
-                using (SqlHelper sqlH = new SqlHelper(SqlHelper.MyConnectionString))
+                SqlHelper sqlH=null;
+                try
                 {
-                    SqlCRUD sqlCRUD = new SqlCRUD(SqlHelper.MyConnectionString);
-                    sqlCRUD.InsertData("Orders", new string[] { "Info", "Money", "Time" },
-                        new string[] { info, OrderList.TotalMoney.ToString(), DateTime.Now.ToString() });
+                    using (sqlH = new SqlHelper(SqlHelper.MyConnectionString))
+                    {
+                        SqlCRUD sqlCRUD = new SqlCRUD(SqlHelper.MyConnectionString);
+                        sqlCRUD.InsertData("Orders", new string[] { "Info", "Money", "Time" },
+                            new string[] { info, OrderList.TotalMoney.ToString(), DateTime.Now.ToString() });
+                    }
+                    this.Remark = string.Empty;
+                    OrdersInfoPageViewModel OrdersInfoVM = ViewModelsManager.GetViewModelFromResources<OrdersInfoPageViewModel>();
+                    OrdersInfoVM.InitializeData();
                 }
-                this.Remark = string.Empty;
+                finally
+                {
+                    if (sqlH != null)
+                    {
+                        sqlH.Dispose();
+                    }
+                }
             }   
         }
     }

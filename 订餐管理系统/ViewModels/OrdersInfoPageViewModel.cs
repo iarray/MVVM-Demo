@@ -5,10 +5,12 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using MVVM;
+using 订餐管理系统.Attributes;
 using 订餐管理系统.Model;
 
 namespace 订餐管理系统.ViewModels
 {
+    [StaticResource("OrdersInfoPageViewModel")]
     class OrdersInfoPageViewModel:NotificationObject
     {
         /// <summary>
@@ -21,6 +23,11 @@ namespace 订餐管理系统.ViewModels
             get
             {
                 return this._ordersData;
+            }
+            set
+            {
+                this._ordersData = value;
+                this.OnPropertyChanged("OrdersData");
             }
         }
 
@@ -61,16 +68,21 @@ namespace 订餐管理系统.ViewModels
 
         public OrdersInfoPageViewModel()
         {
+            InitializeData();
+        }
+
+        public void InitializeData()
+        {
             using (SqlCRUD sqlCRUD = new SqlCRUD(SqlHelper.MyConnectionString))
             {
-                _ordersData = sqlCRUD.SelectData("Orders", new string[] { "ID", "Money", "Time" });
+                OrdersData = sqlCRUD.SelectData("Orders", new string[] { "ID", "Money", "Time" });
             }
             OrderSelectIndex = 0;
         }
 
         public string GetSelectOrderInfo(int index)
         {
-            if (index >= _ordersData.Rows.Count)
+            if (index >= _ordersData.Rows.Count||index<0)
             {
                 return string.Empty;
             }

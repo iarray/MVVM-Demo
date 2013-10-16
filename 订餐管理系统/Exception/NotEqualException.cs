@@ -5,7 +5,7 @@ using System.Text;
 
 namespace 订餐管理系统.Exception
 {
-    class NotEqualException:System.Exception
+    class NotEqualException:System.ApplicationException
     {
         public NotEqualException(string msg):base(msg){}
         public NotEqualException() { }

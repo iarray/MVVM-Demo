@@ -28,7 +28,6 @@ namespace 订餐管理系统.Pages
         public OrderPage()
         {
             InitializeComponent();
-            this.DataContext = new OrderPageViewModel();
         }
     }
 }
