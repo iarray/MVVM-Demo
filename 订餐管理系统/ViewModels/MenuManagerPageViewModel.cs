@@ -105,9 +105,16 @@ namespace 订餐管理系统.ViewModels
         }
 
         /// <summary>
+        /// 绑定菜单表中选中项索引
+        /// </summary>
+        public int SelectIndex { get; set; }
+
+        /// <summary>
         /// 添加数据命令
         /// </summary>
         public DelegateCommand InsertCommand { get; set; }
+
+        public DelegateCommand DeleteCommand { get; set; }
 
         /// <summary>
         /// 构造函数
@@ -117,6 +124,7 @@ namespace 订餐管理系统.ViewModels
             UpDateTable();
             MenuTableAddEvent();
             InsertCommand=new DelegateCommand(new Action<object>(InsertDataToTable));
+            DeleteCommand = new DelegateCommand(new Action<object>(DeleteRow));
         }
 
         /// <summary>
@@ -128,6 +136,16 @@ namespace 订餐管理系统.ViewModels
             {
                 MenuTable = sqlCRUD.SelectData("Menu", new string[] { "*" });
             }
+        }
+
+        /// <summary>
+        /// 更新订餐菜单表
+        /// </summary>
+        public void UpDateOrderPageTable()
+        {
+            OrderPageViewModel OPVM = ViewModelsManager.GetViewModelFromResources<OrderPageViewModel>();
+            if (OPVM != null)
+                OPVM.LoadMenuData();
         }
 
         /// <summary>
@@ -185,9 +203,7 @@ namespace 订餐管理系统.ViewModels
                     ModernDialog.ShowMessage("添加一项数据成功", "提示", System.Windows.MessageBoxButton.OK);
                     UpDateTable();
                     SetDefauteValue();
-                    OrderPageViewModel OPVM = ViewModelsManager.GetViewModelFromResources<OrderPageViewModel>();
-                    if (OPVM != null)
-                        OPVM.LoadMenuData();
+                    UpDateOrderPageTable();
                 }
                 catch(System.Exception e)
                 {
@@ -197,6 +213,25 @@ namespace 订餐管理系统.ViewModels
                 {
                     sqlCRUD.Dispose();
                 }
+            }
+        }
+
+        /// <summary>
+        /// 删除一行数据
+        /// </summary>
+        /// <param name="index"></param>
+        public void DeleteRow(object index)
+        {
+            int i = this.SelectIndex;
+            if (i >= 0&&i<MenuTable.Rows.Count)
+            {
+                string id = MenuTable.Rows[i]["ID"].ToString();
+                using (SqlCRUD sqlCRUD = new SqlCRUD(SqlHelper.MyConnectionString))
+                {
+                    sqlCRUD.DeleteData("Menu", "ID=" + id);
+                }
+                UpDateTable();
+                UpDateOrderPageTable();
             }
         }
 

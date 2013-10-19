@@ -136,7 +136,15 @@ namespace 订餐管理系统.Model
             }
             else
             {
-                string deleteSql = "DELETE * FROM " + table+" WHERE "+filter;
+                string deleteSql = "DELETE  FROM " + table+" WHERE "+filter;
+                try
+                {
+                    this.ExcuteSql(deleteSql);
+                }
+                catch
+                {
+                    throw;
+                }
             }
         }
 
