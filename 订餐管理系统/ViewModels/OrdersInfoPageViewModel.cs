@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -44,9 +45,12 @@ namespace 订餐管理系统.ViewModels
             }
             set
             {
-                this._orderSelectIndex = value;
-                this.OnPropertyChanged("OrderSelectIndex");
-                this.SelectOrderInfo = this.GetSelectOrderInfo(this._orderSelectIndex);
+                if (this._orderSelectIndex != value)
+                {
+                    this._orderSelectIndex = value;
+                    this.OnPropertyChanged("OrderSelectIndex");
+                    this.SelectOrderInfo = this.GetSelectOrderInfo(this._orderSelectIndex);
+                }
             }
         }
         /// <summary>
@@ -66,20 +70,50 @@ namespace 订餐管理系统.ViewModels
             }
         }
 
-        public OrdersInfoPageViewModel()
+        /// <summary>
+        /// 数据过滤指定天数
+        /// </summary>
+        private int _filterDay;
+        public int FilterDay
         {
-            InitializeData();
+            get
+            {
+                return this._filterDay;
+            }
+            set
+            {
+                if (this._filterDay != value)
+                {
+                    this._filterDay = value;
+                    this.OnPropertyChanged("FilterDay");
+                    this.InitializeData();
+                }
+            }
         }
 
+
+        public OrdersInfoPageViewModel()
+        {
+            FilterDay = 1;
+        }
+
+        /// <summary>
+        /// 初始化数据
+        /// </summary>
         public void InitializeData()
         {
             using (SqlCRUD sqlCRUD = new SqlCRUD(SqlHelper.MyConnectionString))
             {
-                OrdersData = sqlCRUD.SelectData("Orders", new string[] { "ID", "Money", "Time" });
+                OrdersData = sqlCRUD.SelectData("Orders", new string[] { "ID", "Money", "Time" },"DATEDIFF(day, Time, '"+DateTime.Now.ToShortDateString()+"')<="+this.FilterDay.ToString());
             }
             OrderSelectIndex = 0;
         }
 
+        /// <summary>
+        /// 获取选中项详细订单信息
+        /// </summary>
+        /// <param name="index">选中项索引</param>
+        /// <returns>返回订单信息</returns>
         public string GetSelectOrderInfo(int index)
         {
             if (index >= _ordersData.Rows.Count||index<0)
@@ -109,6 +143,7 @@ namespace 订餐管理系统.ViewModels
                 }
             }
         }
+
 
     }
 }

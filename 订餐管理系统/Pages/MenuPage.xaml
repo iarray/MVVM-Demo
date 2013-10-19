@@ -6,10 +6,11 @@
              xmlns:mui="http://firstfloorsoftware.com/ModernUI"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid Style="{StaticResource ContentRoot}" DataContext="{StaticResource MenuPageViewModel}">
+    <Grid Style="{StaticResource ContentRoot}" DataContext="{StaticResource MenuManagerPageViewModel}">
         <ScrollViewer>
             <StackPanel MinWidth="200">
-                <DataGrid Name="dataG"  AutoGenerateColumns="True" ItemsSource="{Binding MenuData}"/>
+                <DataGrid Name="dataG" AutoGenerateColumns="True"  ItemsSource="{Binding MenuTable}" IsReadOnly="True">
+                </DataGrid>
             </StackPanel>
         </ScrollViewer>
     </Grid>

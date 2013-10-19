@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="订餐管理系统.Pages.MenuManagerPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid Style="{StaticResource ContentRoot}" DataContext="{StaticResource MenuManagerPageViewModel}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <ScrollViewer Grid.Row="0">
+            <StackPanel MinWidth="200" Orientation="Vertical">
+                <TextBlock Text="编辑已有数据(双击列表数据进行编辑):" Margin="0,0,0,5"/>
+                <DataGrid ItemsSource="{Binding MenuTable}" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding ID}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                        <DataGridTextColumn Header="Price" Binding="{Binding Price}"/>
+                        <DataGridTextColumn Header="Type" Binding="{Binding Type}"/>
+                        <DataGridTextColumn Header="Review" Binding="{Binding Review}"/>
+                        <DataGridTextColumn Header="Score" Binding="{Binding Score}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+        </ScrollViewer>
+        <GroupBox Header="添加一条数据" Grid.Row="1">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <TextBlock Text="Name:" VerticalAlignment="Center" Margin="5,0,5,0"/>
+                <TextBox VerticalAlignment="Center" MinWidth="40" Margin="5,0,5,0" Text="{Binding Name}"/>
+                <TextBlock Text="Price:" VerticalAlignment="Center" Margin="5,0,5,0" />
+                <TextBox VerticalAlignment="Center" MinWidth="40" Margin="5,0,5,0" Text="{Binding Price}"/>
+                <TextBlock Text="Type:" VerticalAlignment="Center" Margin="5,0,5,0" />
+                <TextBox VerticalAlignment="Center" MinWidth="40" Margin="5,0,5,0" Text="{Binding Type}"/>
+                <TextBlock Text="Review:" VerticalAlignment="Center" Margin="5,0,5,0"/>
+                <TextBox VerticalAlignment="Center" MinWidth="40" Margin="5,0,5,0" Text="{Binding Review}"/>
+                <TextBlock Text="Score:" VerticalAlignment="Center" Margin="5,0,5,0"/>
+                <TextBox VerticalAlignment="Center" MinWidth="40" Margin="5,0,5,0" Text="{Binding Score}"/>
+                <Button Command="{Binding InsertCommand}" Content="提交数据" Margin="30,0,10,0"/>
+            </StackPanel>
+        </GroupBox>
+    </Grid>
+</UserControl>

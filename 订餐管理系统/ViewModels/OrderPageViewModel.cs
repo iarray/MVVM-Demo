@@ -62,26 +62,34 @@ namespace 订餐管理系统.ViewModules
         public OrderPageViewModel()
         {
             OrderList = new OrderForm<Order>();
-            using (SqlHelper sqlH = new SqlHelper(SqlHelper.MyConnectionString))
-            {
-                SqlDataReader sdr;
-                sqlH.ExcuteSql("Select Name,Price from dbo.Menu", out sdr);
-                if (sdr != null)
-                {
-                    while (sdr.Read())
-                    {
-                        OrderList.Orders.Add(new Order(sdr.GetString(0), sdr.GetSqlMoney(1).ToDouble()));
-                    }
-                    sdr.Dispose();
-                }
-            }
-
+            LoadMenuData();
             SelectMenuCommand = new DelegateCommand(new Action<object>(SelectMenuProc));
             SumbitCommand=new DelegateCommand(new Action<object>(PostOrdersProc));
         }
 
         public DelegateCommand SelectMenuCommand { get; set; }
         public DelegateCommand SumbitCommand { get; set; }
+
+        public void LoadMenuData()
+        {
+            if (OrderList != null)
+            {
+                OrderList.Orders.Clear();
+                using (SqlHelper sqlH = new SqlHelper(SqlHelper.MyConnectionString))
+                {
+                    SqlDataReader sdr;
+                    sqlH.ExcuteSql("Select Name,Price from dbo.Menu", out sdr);
+                    if (sdr != null)
+                    {
+                        while (sdr.Read())
+                        {
+                            OrderList.Orders.Add(new Order(sdr.GetString(0), sdr.GetSqlMoney(1).ToDouble()));
+                        }
+                        sdr.Dispose();
+                    }
+                }
+            }
+        }
 
         /// <summary>
         /// CheckBox相关Command

@@ -74,13 +74,16 @@
     <Compile Include="Model\Order.cs" />
     <Compile Include="Model\OrderForm.cs" />
     <Compile Include="Model\SqlCRUD.cs" />
+    <Compile Include="Pages\MenuManagerPage.xaml.cs">
+      <DependentUpon>MenuManagerPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\MenuPage.xaml.cs">
       <DependentUpon>MenuPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\OrdersInfoPage.xaml.cs">
       <DependentUpon>OrdersInfoPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\MenuPageViewModel.cs" />
+    <Compile Include="ViewModels\MenuManagerPageViewModel.cs" />
     <Compile Include="ViewModels\OrderPageViewModel.cs" />
     <Compile Include="ViewModels\OrdersInfoPageViewModel.cs" />
     <Page Include="MainWindow.xaml">
@@ -107,6 +110,10 @@
     </Compile>
     <Compile Include="Content\SettingsAppearanceViewModel.cs" />
     <Page Include="Pages\Home.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\MenuManagerPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

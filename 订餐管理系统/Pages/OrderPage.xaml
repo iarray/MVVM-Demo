@@ -18,8 +18,8 @@
                 </Grid.RowDefinitions>
                 <DataGrid Name="dataG"  AutoGenerateColumns="False" ItemsSource="{Binding Path=OrderList.Orders}" >
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="菜名" Binding="{Binding Name}"/>
-                        <DataGridTextColumn Header="价格" Binding="{Binding Price}"/>
+                        <DataGridTextColumn Header="菜名" Binding="{Binding Name}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="价格" Binding="{Binding Price}" IsReadOnly="True"/>
                         <DataGridTemplateColumn Header="下订数量" >
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>

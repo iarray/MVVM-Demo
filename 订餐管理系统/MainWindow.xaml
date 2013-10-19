@@ -16,7 +16,9 @@
             </mui:LinkGroup.Links>
         </mui:LinkGroup>
         <mui:LinkGroup DisplayName="管理">
-            
+            <mui:LinkGroup.Links>
+                <mui:Link DisplayName="菜单管理" Source="/Pages/MenuManagerPage.xaml"/>
+            </mui:LinkGroup.Links>
         </mui:LinkGroup>
         <mui:LinkGroup DisplayName="设置" GroupName="设置">
             <mui:LinkGroup.Links>

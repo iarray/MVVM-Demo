@@ -23,12 +23,13 @@ namespace 订餐管理系统.Manager
                 var attributes = type.GetCustomAttributes(false);
                 foreach (var attribute in attributes)
                 {
-                    if (attribute is StaticResourceAttribute)
+                    StaticResourceAttribute staticRescAttrb = attribute as StaticResourceAttribute;
+                    if (staticRescAttrb!=null)
                     {
                         var staticResource = Activator.CreateInstance(type);
                         if (!app.Resources.Contains(staticResource))
                         {
-                            app.Resources.Add(((StaticResourceAttribute)attribute).Key, staticResource);
+                            app.Resources.Add(staticRescAttrb.Key, staticResource);
                         }
                     }
                 }
@@ -42,17 +43,16 @@ namespace 订餐管理系统.Manager
         /// <returns>返回静态资源中ViewModel实例</returns>
         public static T GetViewModelFromResources<T>()
         {
-
             var key = typeof(T).Name;
 
             if (app.Resources.Contains(key))
-
+            {
                 return (T)app.Resources[key];
-
+            }
             else
-
+            {
                 return default(T);
-
+            }
         }
     }
 }
